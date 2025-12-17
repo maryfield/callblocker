@@ -1,0 +1,23 @@
+[Unit]
+Description=Call Blocker Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=callblocker
+Group=callblocker
+ExecStart=/usr/local/bin/callblockerd --port /dev/ttyUSB0
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Security hardening
+PrivateTmp=yes
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/callblocker /var/log/callblocker
+
+[Install]
+WantedBy=multi-user.target
