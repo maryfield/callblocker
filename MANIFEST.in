@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include requirements.txt
+include callblocker.service
+include callblocker.conf
+include install.sh
+include test.py
+include EXAMPLES.md
