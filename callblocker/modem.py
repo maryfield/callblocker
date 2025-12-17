@@ -10,6 +10,9 @@ import re
 import logging
 from typing import Optional, Tuple
 
+# Costanti
+MODEM_BUFFER_MAX_SIZE = 1000  # Dimensione massima buffer dati modem
+
 
 class ModemError(Exception):
     """Eccezione per errori del modem."""
@@ -159,9 +162,9 @@ class Modem:
                         if phone_number:
                             return (phone_number, caller_id)
                     
-                    # Mantieni solo gli ultimi 1000 caratteri nel buffer
-                    if len(buffer) > 1000:
-                        buffer = buffer[-1000:]
+                    # Mantieni solo gli ultimi caratteri nel buffer
+                    if len(buffer) > MODEM_BUFFER_MAX_SIZE:
+                        buffer = buffer[-MODEM_BUFFER_MAX_SIZE:]
                         
                 except Exception as e:
                     self.logger.error(f"Errore lettura chiamata: {e}")
