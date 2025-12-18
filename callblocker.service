@@ -1,0 +1,28 @@
+[Unit]
+Description=Call Blocker Daemon - Sistema blocco chiamate analogiche
+Documentation=man:callblocker(8)
+After=network.target
+
+[Service]
+Type=simple
+User=callblocker
+Group=dialout
+ExecStart=/usr/local/bin/callblocker-daemon
+Restart=always
+RestartSec=10
+
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/callblocker /var/log
+NoNewPrivileges=true
+PrivateTmp=true
+
+MemoryMax=100M
+TasksMax=10
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=callblocker
+
+[Install]
+WantedBy=multi-user.target

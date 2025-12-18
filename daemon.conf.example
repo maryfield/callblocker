@@ -1,0 +1,18 @@
+# Configurazione Call Blocker Daemon
+
+[Serial]
+device = /dev/ttyACM0
+baudrate = 9600
+
+[Timing]
+ring_timeout = 8.0
+clip_wait_timeout = 3.0
+block_wait_time = 1.5
+
+[Files]
+blacklist_file = /var/lib/callblocker/blacklist.json
+log_db = /var/lib/callblocker/calls.db
+
+[Logging]
+log_level = INFO
+log_file = /var/log/callblocker.log
